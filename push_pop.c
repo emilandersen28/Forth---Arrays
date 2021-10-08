@@ -22,14 +22,14 @@ int first;
 int main(void){
 int size=10;
 int main_stack[10]={0,0,0,0,0,0,0,0,0,0};
-int x;
-int y;
+int stack_size;
 //scanin numbers
 
 printf("Enter values, end with 0\n");
 
 for(int i=0;i<size;i++){
     scanf("%d\n",&main_stack[i]);
+    stack_size=i+1;
     if(main_stack[i]==0);
         i=size-1;
 }
