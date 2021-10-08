@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+//Arithmetics
+
 int addition(int x, int y){
     int result = x + y;
 return result;
@@ -19,6 +21,8 @@ int subtraction(int x, int y){
     int result = x / y;
 return result;
 }
+
+//Comparisons
 
 int largerthan(int x, int y){
     int result = x;
