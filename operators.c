@@ -17,7 +17,7 @@ int subtraction(int x, int y){
 return result;
 }
 
-int subtraction(int x, int y){
+int division(int x, int y){
     int result = x / y;
 return result;
 }
