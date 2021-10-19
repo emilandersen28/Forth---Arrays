@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "push_pop_lib.h"
 
 //Arithmetics
@@ -14,6 +15,7 @@ result=x+y;
 
 push_first(stack,result);
 
+
 }
 
 //subtraction
@@ -24,9 +26,11 @@ int x; int y; int result;
 x=pop_first(stack);
 y=pop_first(stack);
 
-result=y-x;
 
+result=y-x;
 push_first(stack,result);
+
+
 
 }
 

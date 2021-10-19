@@ -65,39 +65,47 @@ enter:
 printf("\n");
 printf("now calculations\n");
 
-    for (unsigned i = func_count-1 ; i-- > 0 ; )
-    {
-       
-       printf("loop functions is %c and i=%i\n",func_stack[i],i);
 
+for (unsigned i = func_count-1 ; i-- > 0 ; )
+    {
+    if(stack_size>1)
+    {
             switch (func_stack[i])
             {
                 case '+':
+                {
                 printf("func +\n");
                 plus(main_stack);
+                stack_size--;
                     for(int i=0;i<stack_size;i++)
                         if(main_stack>0)
                             printf("%d ",main_stack[i]);
                 printf("\n");   
                     break;             
-                
+                } 
+
                 case '-':
+                {
                 printf("func -\n");
-                minus(main_stack);
+                int dumt=minus(main_stack);
+                stack_size--;
+                if(dumt==0)
+                    stack_size--;
+
+
                     for(int i=0;i<stack_size;i++)
                             if(main_stack>0)
                                 printf("%d ",main_stack[i]);
                 printf("\n");
                     break;
-                
+                }
             }
+        }    
     }
 
 
 
-
-
-    printf("stack is ");
+printf("after calculations\n");
     for(int i=0;i<stack_size;i++)
     {
         if(main_stack>0)
