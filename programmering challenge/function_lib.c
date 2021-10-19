@@ -1,22 +1,48 @@
 #include <stdio.h>
+#include "push_pop_lib.h"
 
 //Arithmetics
+//addition
+int plus(int stack[])
+{
+int x; int y; int result;
 
-int plus(int x, int y){
-    int result = x + y;
-return result;
+x=pop_first(stack);
+y=pop_first(stack);
+
+result=x+y;
+
+push_first(stack,result);
+
 }
+
+//subtraction
+int minus(int stack[])
+{
+int x; int y; int result;
+
+x=pop_first(stack);
+y=pop_first(stack);
+
+result=y-x;
+
+push_first(stack,result);
+
+}
+
+
+
 
 int multiply(int x, int y){
     int result = x * y;
 return result;
 }
-
+/*
 int minus(int x, int y){
     int result = x - y;
 return result;
 }
-
+*/
 int divide(int x, int y){
     int result = x / y;
 return result;
