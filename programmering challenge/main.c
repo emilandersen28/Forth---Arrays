@@ -40,7 +40,7 @@ enter:
         }
     }
 //scanin the function +-*/ etc.
-    printf("Now enter your function (-+*/)\n End with C for calculation or E for entering more numbers\n" );
+    printf("Now enter your function (-+*/r)\n End with C for calculation\n" );
 
     for (int i = 0; i < size-1; i++)
     {
@@ -79,50 +79,68 @@ for (unsigned i = func_count-1 ; i-- > 0 ; )
             switch (func_stack[i])
             {
                 case '+':
-                {
-                
-                int zero_outcome = addition(main_stack);
-                
-                func_stack[i]=0;
+                    {
+                        
+                        int zero_outcome = addition(main_stack);
+                        
+                        func_stack[i]=0;
 
-                stack_size--;
+                        stack_size--;
 
-                if(zero_outcome==0)
-                   stack_size--; 
+                        if(zero_outcome==0)
+                        stack_size--; 
 
-for(int i=0;i<stack_size;i++)
-    {
-        if(main_stack>0)
-            printf("%d ",main_stack[i]);
-    }
-printf("\n");
-                
-                break;             
-                } 
+                        
+                        break;             
+                    } 
 
                 case '-':
-                {
-                //zero outcome used for if statement.
-                int zero_outcome = subtraction(main_stack);
+                    {
+                        //zero outcome used for if statement.
+                        int zero_outcome = subtraction(main_stack);
 
-                stack_size--;
-                //if the outcome of a subtration is 0 array size should go down by one
+                        stack_size--;
+                        //if the outcome of a subtration is 0 array size should go down by one
 
-                if(zero_outcome==0)
-                   stack_size--; 
+                        if(zero_outcome==0)
+                        stack_size--; 
 
-                func_stack[i]=0;
+                        func_stack[i]=0;
+                    
+                        break;
+                    }
+                case '*':
+                    {
+                        multiply(main_stack);
 
-for(int i=0;i<stack_size;i++)
-    {
-        if(main_stack>0)
-            printf("%d ",main_stack[i]);
-    }
-printf("\n");               
+                        stack_size--;
+
+                        func_stack[i]=0;
+
+                        break;
+                    }
                 
-                
-                break;
-                }
+                case '/':
+                    {
+                        divide(main_stack);
+
+                        stack_size--;
+
+                        func_stack[i]=0;
+
+                        break;
+                    }
+                case 'r':
+                    {
+                        pop_first(main_stack);
+
+                        stack_size--;
+
+                        func_stack[i]=0;
+                        
+                        break;
+                    }
+
             }
         }    
     }
@@ -133,7 +151,7 @@ for(int i=0;i<stack_size;i++)
             printf("%d ",main_stack[i]);
     }
 printf("\n");
-//goto start; 
+goto start; 
 
 return 0;
 }
