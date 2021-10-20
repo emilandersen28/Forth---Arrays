@@ -4,7 +4,7 @@
 
 //Arithmetics
 //addition
-int plus(int stack[])
+int addition(int stack[])
 {
 int x; int y; int result;
 
@@ -15,11 +15,11 @@ result=x+y;
 
 push_first(stack,result);
 
-
+return result;
 }
 
 //subtraction
-int minus(int stack[])
+int subtraction(int stack[])
 {
 int x; int y; int result;
 
@@ -30,8 +30,7 @@ y=pop_first(stack);
 result=y-x;
 push_first(stack,result);
 
-
-
+return result;
 }
 
 

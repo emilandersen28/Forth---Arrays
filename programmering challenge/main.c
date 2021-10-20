@@ -12,105 +12,128 @@ start:
 
 printf("Enter values, if you want to use a fuction type 0\n");
 
-//runs a scan function the size of the array
 enter:
+//runs a scan function the size of the array
 
     for(int i=0;i<size;++i)
     {
+//scan a new number if the place in array is emty
         if(main_stack[i]==0)
         {
             scanf("%d",&main_stack[i]);    
+
+            //scans if theres stil place in array else and its a value over 0
                 if(main_stack[i]>0)
                         stack_size=i+1;
+            //if 0 is entered breaks loop and prints stack
                 else
-                {
-                    printf("stack size %d and top_number %d\n\n",stack_size,main_stack[i-1]);
+                    {
+                    printf("stack is ");
+                    for(int i=0;i<stack_size;i++)
+                        {
+                            if(main_stack>0)
+                                printf("%d ",main_stack[i]);
+                        }
+                    printf("\n");
                     break;
-                }
+                    }
         }
     }
-
+//scanin the function +-*/ etc.
     printf("Now enter your function (-+*/)\n End with C for calculation or E for entering more numbers\n" );
 
     for (int i = 0; i < size-1; i++)
     {
+//scans a function if place in array is emty
         if(func_stack[i]==0)
         {
+            //dont know why it needs double scan for char but it works
             scanf("%c",&func_stack[i]);
             scanf("%c",&func_stack[i]);
-            func_count++;
 
+            //adds 1 to func_count bc fourth is read from right to left. 
+            //Therefore the function loop must be read from top place of func array to first place.
+            func_count++;
+            
+            //C for calculate is used to break the scanin loop and go to calculation
             if(func_stack[i]=='c'||func_stack[i]=='C')
                 {
                 printf("break\n");
                 func_stack[i]=0;
                 break;
                 }
-            if(func_stack[i]=='e'||func_stack[i]=='E')
-                {
-                printf("enter\n");
-                func_stack[i]=0;
-                goto enter;
-                }
-            
         }
     }
 
-    printf("stack is ");
-    for(int i=0;i<stack_size;i++)
+
+printf("\n");
+printf("now calculations\n");
+
+//function loop that runs backwards.
+for (unsigned i = func_count-1 ; i-- > 0 ; )
+    {
+//precondition funtion with the need of to variable shouldnt be able to run with only one variable.
+        if(stack_size>1)
+        {
+            //switch statement to switch between operations
+            switch (func_stack[i])
+            {
+                case '+':
+                {
+                
+                int zero_outcome = addition(main_stack);
+                
+                func_stack[i]=0;
+
+                stack_size--;
+
+                if(zero_outcome==0)
+                   stack_size--; 
+
+for(int i=0;i<stack_size;i++)
     {
         if(main_stack>0)
             printf("%d ",main_stack[i]);
     }
 printf("\n");
-printf("now calculations\n");
-
-
-for (unsigned i = func_count-1 ; i-- > 0 ; )
-    {
-    if(stack_size>1)
-    {
-            switch (func_stack[i])
-            {
-                case '+':
-                {
-                printf("func +\n");
-                plus(main_stack);
-                stack_size--;
-                    for(int i=0;i<stack_size;i++)
-                        if(main_stack>0)
-                            printf("%d ",main_stack[i]);
-                printf("\n");   
-                    break;             
+                
+                break;             
                 } 
 
                 case '-':
                 {
-                printf("func -\n");
-                int dumt=minus(main_stack);
+                //zero outcome used for if statement.
+                int zero_outcome = subtraction(main_stack);
+
                 stack_size--;
-                if(dumt==0)
-                    stack_size--;
+                //if the outcome of a subtration is 0 array size should go down by one
 
+                if(zero_outcome==0)
+                   stack_size--; 
 
-                    for(int i=0;i<stack_size;i++)
-                            if(main_stack>0)
-                                printf("%d ",main_stack[i]);
-                printf("\n");
-                    break;
-                }
-            }
-        }    
-    }
+                func_stack[i]=0;
 
-
-
-printf("after calculations\n");
-    for(int i=0;i<stack_size;i++)
+for(int i=0;i<stack_size;i++)
     {
         if(main_stack>0)
             printf("%d ",main_stack[i]);
     }
+printf("\n");               
+                
+                
+                break;
+                }
+            }
+        }    
+    }
+printf("stack size %d\n stack is ",stack_size);
+for(int i=0;i<stack_size;i++)
+    {
+        if(main_stack>0)
+            printf("%d ",main_stack[i]);
+    }
+printf("\n");
+//goto start; 
 
 return 0;
 }
