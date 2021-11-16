@@ -4,31 +4,31 @@
 
 //Arithmetics
 //addition
-int addition(int stack[])
+double addition(double stack[])
 {
-int x; int y; int result;
+double x; double y; double result;
 
-x=pop_first(stack);
-y=pop_first(stack);
+x=pop(stack);
+y=pop(stack);
 
 result=x+y;
 
-push_first(stack,result);
+push(stack,result);
 
 return result;
 }
 
 //subtraction
-int subtraction(int stack[])
+double subtraction(double stack[])
 {
-int x; int y; int result;
+double x; double y; double result;
 
-x=pop_first(stack);
-y=pop_first(stack);
+x=pop(stack);
+y=pop(stack);
 
 
 result=y-x;
-push_first(stack,result);
+push(stack,result);
 
 return result;
 }
@@ -36,31 +36,32 @@ return result;
 
 
 
-int multiply(int stack[])
+double multiply(double stack[])
 {
-int x; int y; int result;
+double x; double y; double result;
 
-x=pop_first(stack);
-y=pop_first(stack);
+x=pop(stack);
+y=pop(stack);
 
 
 result=x*y;
-push_first(stack,result);
+push(stack,result);
 
 return result;
 }
 
 
-int divide(int stack[])
+double divide(double stack[])
 {
-int x; int y; int result;
+double x; double y; double result;
 
-x=pop_first(stack);
-y=pop_first(stack);
+x=pop(stack);
+y=pop(stack);
 
 
 result=y/x;
-push_first(stack,result);
+push(stack,result);
 
 return result;
 }
+

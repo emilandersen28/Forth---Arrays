@@ -3,20 +3,21 @@
 
 
 //adds a variable to the first place that is 0 in an array
-double push(double array[],double value){
+int push_first(int array[],int value){
 //runs array until it incounter 0 then saves a value in that place
-    for(int i=0;i<10;i++)
-        if(array[i]==0.0){
-            array[i]=value;
+    for(int i = 0; i < 10; i++)
+        if(array[i] == 0)
+        {
+            array[i] = value;
             return 0;
         }
 }
 //saves the last variable bigger than 0 in an array and returns the variable
-double pop(double array[]){
-double first;
+int pop_first(int array[]){
+int first;
 //runs array until incounter 0
     for(int i=0;i<10;i++)
-        if(array[i]==0.0){
+        if(array[i]==0){
         //then saves the array plave just before 0, resets it to 0.
             first=array[i-1];
             array[i-1]=0;

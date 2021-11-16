@@ -3,8 +3,8 @@
 #include "push_pop_lib.h"
 int main()
 {
-    int size=10; int stack_size; int func_count=0;
-    double main_stack[10]={0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
+    int size=10; int stack_size=0; int func_count=0;
+    int main_stack[10]={0,0,0,0,0,0,0,0,0,0};
     char func_stack[9]={0,0,0,0,0,0,0,0,0};
 
 //scanin numbers
@@ -20,7 +20,7 @@ enter:
 //scan a new number if the place in array is emty
         if(main_stack[i]==0)
         {
-            scanf("%lf",&main_stack[i]);    
+            scanf("%d",&main_stack[i]);    
 
             //scans if theres stil place in array else and its a value over 0
                 if(main_stack[i]>0)
@@ -32,7 +32,7 @@ enter:
                     for(int i=0;i<stack_size;i++)
                         {
                             if(main_stack>0)
-                                printf("%lf ",main_stack[i]);
+                                printf("%d ",main_stack[i]);
                         }
                     printf("\n");
                     break;
@@ -58,6 +58,7 @@ enter:
             //C for calculate is used to break the scanin loop and go to calculation
             if(func_stack[i]=='c'||func_stack[i]=='C')
                 {
+                printf("break\n");
                 func_stack[i]=0;
                 break;
                 }
@@ -67,14 +68,6 @@ enter:
 
 printf("\n");
 printf("now calculations\n");
-
-printf("stack size %d\n stack is ",stack_size);
-for(int i=0;i<stack_size;i++)
-    {
-        if(main_stack>0)
-            printf("%lf ",main_stack[i]);
-    }
-printf("\n");
 
 //function loop that runs backwards.
 for (unsigned i = func_count-1 ; i-- > 0 ; )
@@ -88,16 +81,14 @@ for (unsigned i = func_count-1 ; i-- > 0 ; )
                 case '+':
                     {
                         
-                        //double zero_outcome = 
+                        int zero_outcome = addition(main_stack);
                         
-                        addition(main_stack);
-                        
-                        func_stack[i]=0.0;
+                        func_stack[i]=0;
 
-                        //stack_size--;
+                        stack_size--;
 
-                        // if(zero_outcome==0)
-                           // stack_size--; 
+                        if(zero_outcome==0)
+                        stack_size--; 
 
                         
                         break;             
@@ -106,13 +97,13 @@ for (unsigned i = func_count-1 ; i-- > 0 ; )
                 case '-':
                     {
                         //zero outcome used for if statement.
-                        double zero_outcome = subtraction(main_stack);
+                        int zero_outcome = subtraction(main_stack);
 
                         stack_size--;
                         //if the outcome of a subtration is 0 array size should go down by one
 
-                        if(zero_outcome==0.000000)
-                             stack_size--;
+                        if(zero_outcome==0)
+                        stack_size--; 
 
                         func_stack[i]=0;
                     
@@ -135,13 +126,13 @@ for (unsigned i = func_count-1 ; i-- > 0 ; )
 
                         stack_size--;
 
-                        func_stack[i]=0.0;
+                        func_stack[i]=0;
 
                         break;
                     }
                 case 'r':
                     {
-                        pop(main_stack);
+                        pop_first(main_stack);
 
                         stack_size--;
 
@@ -157,10 +148,10 @@ printf("stack size %d\n stack is ",stack_size);
 for(int i=0;i<stack_size;i++)
     {
         if(main_stack>0)
-            printf("%lf ",main_stack[i]);
+            printf("%d ",main_stack[i]);
     }
 printf("\n");
-//goto start; 
+goto start; 
 
 return 0;
 }
